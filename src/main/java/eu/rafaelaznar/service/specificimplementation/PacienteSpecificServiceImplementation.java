@@ -59,6 +59,11 @@ public class PacienteSpecificServiceImplementation extends GenericTableService {
         super(request);
     }
 
+    @Override
+    protected Boolean checkPermission(String strMethodName) {
+        return true;
+    }
+
     public ReplyBean vacia() throws Exception {
         if (this.checkPermission("vacia")) {
             ob = "paciente";
