@@ -73,8 +73,7 @@ public class JsonController extends HttpServlet {
             Controllerdelay(0);
             String ob = prepareCamelCaseObject(request);
             String op = request.getParameter("op");
-            String operacion = request.getParameter("operacion");
-            if (("".equalsIgnoreCase(operacion) && "".equalsIgnoreCase(ob) && "".equalsIgnoreCase(op)) || (operacion == null && ob == null && op == null)) {
+            if (("".equalsIgnoreCase(ob) && "".equalsIgnoreCase(op)) || (ob == null && op == null)) {
                 Connection oConnection = null;
                 ConnectionInterface oPooledConnection = null;
                 response.setContentType("text/html;charset=UTF-8");
@@ -109,22 +108,8 @@ public class JsonController extends HttpServlet {
                 response.setHeader("Access-Control-Allow-Headers", "Origin, Accept, x-requested-with, Content-Type");
                 try {
 
-                    if (operacion != null) {
-                        PacienteSpecificServiceImplementation oService = new PacienteSpecificServiceImplementation( request);
-                        if (operacion.equalsIgnoreCase("vacia")) {
-                            oReplyBean = (ReplyBean) oService.vacia();
-                        }
-                        if (operacion.equalsIgnoreCase("rellena")) {
-                            oReplyBean = (ReplyBean) oService.rellena();
-                        }
-                        if (operacion.equalsIgnoreCase("cuenta")) {
-                            oReplyBean = (ReplyBean) oService.cuenta();
-                        }
+                    oReplyBean = (ReplyBean) MappingServiceHelper.executeMethodService(request);
 
-                    } else {
-
-                        oReplyBean = (ReplyBean) MappingServiceHelper.executeMethodService(request);
-                    }
                 } catch (Exception ex) {
                     if (EstadoHelper.getTipo_estado() == Tipo_estado.Debug) {
                         out.println(ex);
