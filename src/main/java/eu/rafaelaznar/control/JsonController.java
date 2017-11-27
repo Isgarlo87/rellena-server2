@@ -1,23 +1,23 @@
 /*
  * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
- * 
- * trolleyes-server: Helps you to develop easily AJAX web applications 
+ *
+ * trolleyes-server: Helps you to develop easily AJAX web applications
  *               by copying and modifying this Java Server.
  *
  * Sources at https://github.com/rafaelaznar/trolleyes-server
- * 
+ *
  * trolleyes-server is distributed under the MIT License (MIT)
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -36,6 +36,7 @@ import eu.rafaelaznar.helper.EstadoHelper.Tipo_estado;
 import eu.rafaelaznar.helper.Log4jConfigurationHelper;
 import eu.rafaelaznar.helper.MappingServiceHelper;
 import static eu.rafaelaznar.helper.ParameterCookHelper.prepareCamelCaseObject;
+import eu.rafaelaznar.service.specificimplementation.PacienteSpecificServiceImplementation;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
@@ -72,15 +73,16 @@ public class JsonController extends HttpServlet {
             Controllerdelay(0);
             String ob = prepareCamelCaseObject(request);
             String op = request.getParameter("op");
-            if (("".equalsIgnoreCase(ob) && "".equalsIgnoreCase(op)) || (ob == null && op == null)) {
+            String operacion = request.getParameter("operacion");
+            if (("".equalsIgnoreCase(operacion) && "".equalsIgnoreCase(ob) && "".equalsIgnoreCase(op)) || (operacion == null && ob == null && op == null)) {
                 Connection oConnection = null;
                 ConnectionInterface oPooledConnection = null;
                 response.setContentType("text/html;charset=UTF-8");
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
-                out.println("<head><title>Trolleyes server v2</title><link rel=\"shortcut icon\" href=\"favicon.ico\" type=\"image/x-icon\"></head>");
-                out.println("<body style=\"background: url(trolleyes400.png) no-repeat center center fixed;\">");
-                out.println("<h1>Welcome to trolleyes server v2</h1><h2>Servlet controller json listening at " + InetAddress.getLocalHost().getHostAddress() + ":" + request.getLocalPort() + request.getContextPath() + "</h2>");
+                out.println("<head><title>Rellena server v2</title><link rel=\"shortcut icon\" href=\"favicon.ico\" type=\"image/x-icon\"></head>");
+                //out.println("<body style=\"background: url(trolleyes400.png) no-repeat center center fixed;\">");
+                out.println("<h1>Welcome to rellena server v2</h1><h2>Servlet controller json listening at " + InetAddress.getLocalHost().getHostAddress() + ":" + request.getLocalPort() + request.getContextPath() + "</h2>");
                 out.println("");
                 try {
                     oPooledConnection = AppConfigurationHelper.getSourceConnection();
@@ -106,7 +108,23 @@ public class JsonController extends HttpServlet {
                 response.setHeader("Access-Control-Allow-Credentials", "true");
                 response.setHeader("Access-Control-Allow-Headers", "Origin, Accept, x-requested-with, Content-Type");
                 try {
-                    oReplyBean = (ReplyBean) MappingServiceHelper.executeMethodService(request);
+
+                    if (operacion != null) {
+                        PacienteSpecificServiceImplementation oService = new PacienteSpecificServiceImplementation( request);
+                        if (operacion.equalsIgnoreCase("vacia")) {
+                            oReplyBean = (ReplyBean) oService.vacia();
+                        }
+                        if (operacion.equalsIgnoreCase("rellena")) {
+                            oReplyBean = (ReplyBean) oService.rellena();
+                        }
+                        if (operacion.equalsIgnoreCase("cuenta")) {
+                            oReplyBean = (ReplyBean) oService.cuenta();
+                        }
+
+                    } else {
+
+                        oReplyBean = (ReplyBean) MappingServiceHelper.executeMethodService(request);
+                    }
                 } catch (Exception ex) {
                     if (EstadoHelper.getTipo_estado() == Tipo_estado.Debug) {
                         out.println(ex);
@@ -120,6 +138,12 @@ public class JsonController extends HttpServlet {
                 response.setStatus(oReplyBean.getCode());
                 out.print("{\"status\":" + oReplyBean.getCode() + ", \"json\":" + oReplyBean.getJson() + "}");
             }
+        } catch (Exception ex) {
+
+            oReplyBean = new ReplyBean(500, "trolleyes-server error. Please, contact your administrator.");
+
+            Log4jConfigurationHelper.errorLog(this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName(), ex);
+
         }
     }
 

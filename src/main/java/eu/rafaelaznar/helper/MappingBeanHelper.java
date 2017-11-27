@@ -31,10 +31,14 @@ package eu.rafaelaznar.helper;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.publicinterface.GenericBeanInterface;
-import eu.rafaelaznar.bean.specificimplementation.CarritoSpecificBeanImplementation;
-import eu.rafaelaznar.bean.specificimplementation.LineadepedidoSpecificBeanImplementation;
-import eu.rafaelaznar.bean.specificimplementation.PedidoSpecificBeanImplementation;
-import eu.rafaelaznar.bean.specificimplementation.ProductoSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.ApellidoSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.ComunidadSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.MunicipioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.NombrefemeninoSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.NombremasculinoSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.ProvinciaSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.ViaSpecificBeanImplementation;
 
 /**
  *
@@ -52,20 +56,32 @@ public class MappingBeanHelper {
             case "tipousuario":
                 oBean = new TipousuarioSpecificBeanImplementation();
                 break;
-            case "linea_pedido":
-                oBean = new LineadepedidoSpecificBeanImplementation();
+          
+            case "apellido":
+                oBean =  new ApellidoSpecificBeanImplementation();
                 break;
-            case "producto":
-                oBean = new ProductoSpecificBeanImplementation();
+            case "comunidad":
+                oBean = new ComunidadSpecificBeanImplementation();
                 break;
-            case "pedido":
-                oBean = new PedidoSpecificBeanImplementation();
+            case "municipio":
+                oBean = new MunicipioSpecificBeanImplementation();
                 break;
-            case "carrito":
-                oBean = new CarritoSpecificBeanImplementation();
+            case "nombrefemenino":
+                oBean = new NombrefemeninoSpecificBeanImplementation();
+                break;
+            case "nombremasculino":
+                oBean = new NombremasculinoSpecificBeanImplementation();
+                break;
+            case "paciente":
+                oBean = new PacienteSpecificBeanImplementation();
+                break;
+            case "provincia":
+                oBean = new ProvinciaSpecificBeanImplementation();
+                break;
+            case "via":
+                oBean = new ViaSpecificBeanImplementation();
                 break;
             default:
-
                 //oReplyBean = new ReplyBean(500, "Object not found : Please contact your administrator");
                 break;
         }

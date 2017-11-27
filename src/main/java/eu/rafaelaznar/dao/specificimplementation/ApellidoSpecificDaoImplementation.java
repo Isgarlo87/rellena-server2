@@ -1,23 +1,23 @@
 /*
  * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
- * 
- * trolleyes-server: Helps you to develop easily AJAX web applications 
+ *
+ * trolleyes-server: Helps you to develop easily AJAX web applications
  *               by copying and modifying this Java Server.
  *
  * Sources at https://github.com/rafaelaznar/trolleyes-server
- * 
+ *
  * trolleyes-server is distributed under the MIT License (MIT)
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,15 +26,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.service.specificimplementation;
+package eu.rafaelaznar.dao.specificimplementation;
 
-import eu.rafaelaznar.service.genericimplementation.GenericTableService;
-import javax.servlet.http.HttpServletRequest;
+import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
+import java.sql.Connection;
 
-public class ProductoSpecificServiceImplementation extends GenericTableService {
+public class ApellidoSpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    public ProductoSpecificServiceImplementation(HttpServletRequest request) {
-        super(request);
+    public ApellidoSpecificDaoImplementation(Connection oPooledConnection, UsuarioSpecificBeanImplementation oPuserBean_security, String strWhere) {
+        super("apellido", oPooledConnection, oPuserBean_security, strWhere);
     }
 
 }

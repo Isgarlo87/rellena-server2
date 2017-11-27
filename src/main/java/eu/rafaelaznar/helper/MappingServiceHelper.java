@@ -29,10 +29,7 @@
 package eu.rafaelaznar.helper;
 
 import eu.rafaelaznar.bean.ReplyBean;
-import eu.rafaelaznar.service.specificimplementation.CarritoSpecificServiceImplementation;
-import eu.rafaelaznar.service.specificimplementation.LineadepedidoSpecificServiceImplementation;
-import eu.rafaelaznar.service.specificimplementation.PedidoSpecificServiceImplementation;
-import eu.rafaelaznar.service.specificimplementation.ProductoSpecificServiceImplementation;
+import eu.rafaelaznar.service.specificimplementation.PacienteSpecificServiceImplementation;
 import eu.rafaelaznar.service.specificimplementation.TipousuarioSpecificServiceImplementation;
 import eu.rafaelaznar.service.specificimplementation.UsuarioSpecificServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
@@ -111,115 +108,22 @@ public class MappingServiceHelper {
                         break;
                 }
                 break;
-            case "pedido":
-                PedidoSpecificServiceImplementation oPedidoService = new PedidoSpecificServiceImplementation(oRequest);
+         
+           
+         
+     
+            case "paciente":
+                PacienteSpecificServiceImplementation oPacienteService = new PacienteSpecificServiceImplementation(oRequest);
                 switch (op) {
-                    case "get":
-                        oReplyBean = oPedidoService.get();
+                    case "vacia":
+                        oReplyBean = oPacienteService.vacia();
                         break;
-                    case "set":
-                        oReplyBean = oPedidoService.set();
+                    case "cuenta":
+                        oReplyBean = oPacienteService.cuenta();
                         break;
-                    case "remove":
-                        oReplyBean = oPedidoService.remove();
-                        break;
-                    case "getpage":
-                        oReplyBean = oPedidoService.getPage();
-                        break;
-                    case "getcount":
-                        oReplyBean = oPedidoService.getCount();
-                        break;
-
-                    case "getcountx":
-                        oReplyBean = oPedidoService.getCountX();
-                        break;
-                    case "getpagex":
-                        oReplyBean = oPedidoService.getPageX();
-                        break;
-                    default:
-                        oReplyBean = new ReplyBean(500, EncodingUtilHelper.quotate("Operation not found : Please contact your administrator"));
-                        break;
-                }
-                break;
-            case "producto":
-                ProductoSpecificServiceImplementation oProductoService = new ProductoSpecificServiceImplementation(oRequest);
-                switch (op) {
-                    case "get":
-                        oReplyBean = oProductoService.get();
-                        break;
-                    case "set":
-                        oReplyBean = oProductoService.set();
-                        break;
-                    case "remove":
-                        oReplyBean = oProductoService.remove();
-                        break;
-                    case "getpage":
-                        oReplyBean = oProductoService.getPage();
-                        break;
-                    case "getcount":
-                        oReplyBean = oProductoService.getCount();
-                        break;
-                    case "getcountx":
-                        oReplyBean = oProductoService.getCountX();
-                        break;
-                    case "getpagex":
-                        oReplyBean = oProductoService.getPageX();
-                        break;
-                    default:
-                        oReplyBean = new ReplyBean(500, EncodingUtilHelper.quotate("Operation not found : Please contact your administrator"));
-                        break;
-                }
-                break;
-            case "linea_pedido":
-                LineadepedidoSpecificServiceImplementation oLineadepedidoService = new LineadepedidoSpecificServiceImplementation(oRequest);
-                switch (op) {
-                    case "get":
-                        oReplyBean = oLineadepedidoService.get();
-                        break;
-                    case "set":
-                        oReplyBean = oLineadepedidoService.set();
-                        break;
-                    case "remove":
-                        oReplyBean = oLineadepedidoService.remove();
-                        break;
-                    case "getpage":
-                        oReplyBean = oLineadepedidoService.getPage();
-                        break;
-                    case "getcount":
-                        oReplyBean = oLineadepedidoService.getCount();
-                        break;
-                    case "getcountx":
-                        oReplyBean = oLineadepedidoService.getCountX();
-                        break;
-                    case "getpagex":
-                        oReplyBean = oLineadepedidoService.getPageX();
-                        break;
-                    default:
-                        oReplyBean = new ReplyBean(500, EncodingUtilHelper.quotate("Operation not found : Please contact your administrator"));
-                        break;
-                }
-                break;
-            case "carrito":
-                CarritoSpecificServiceImplementation oCarritoService = new CarritoSpecificServiceImplementation(oRequest);
-                switch (op) {
-                    case "add":
-                        oReplyBean = oCarritoService.add();
-                        break;
-                    case "remove":
-                        oReplyBean = oCarritoService.remove();
-                        break;
-                    case "list":
-                        oReplyBean = oCarritoService.list();
-                        break;
-                    case "buy":
-                        oReplyBean = oCarritoService.buy();
-                        break;
-                    case "empty":
-                        oReplyBean = oCarritoService.empty();
-                        break;
-                    case "count":
-                        oReplyBean = oCarritoService.count();
-                        break;
+                    case "rellena":
+                        oReplyBean = oPacienteService.rellena();
+                        break;                   
                 }
                 break;
             default:

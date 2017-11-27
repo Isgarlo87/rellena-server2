@@ -70,7 +70,7 @@ public abstract class GenericViewService implements ViewServiceInterface {
      */
     @Override
     public ReplyBean getPage() throws Exception {
-        if (this.checkPermission("getpage")) {
+        //if (this.checkPermission("getpage")) {
             int np = Integer.parseInt(oRequest.getParameter("np"));
             int rpp = Integer.parseInt(oRequest.getParameter("rpp"));
             String strOrder = oRequest.getParameter("order");
@@ -102,9 +102,9 @@ public abstract class GenericViewService implements ViewServiceInterface {
                 }
             }
             return oReplyBean;
-        } else {
-            return new ReplyBean(401, EncodingUtilHelper.quotate("Unauthorized"));
-        }
+//        } else {
+//            return new ReplyBean(401, EncodingUtilHelper.quotate("Unauthorized"));
+//        }
     }
 
     /*
@@ -112,7 +112,7 @@ public abstract class GenericViewService implements ViewServiceInterface {
      */
     @Override
     public ReplyBean getCount() throws Exception {
-        if (this.checkPermission("getcount")) {
+        //if (this.checkPermission("getcount")) {
             Long lResult;
             Connection oConnection = null;
             ConnectionInterface oPooledConnection = null;
@@ -140,9 +140,9 @@ public abstract class GenericViewService implements ViewServiceInterface {
                 }
             }
             return oReplyBean;
-        } else {
-            return new ReplyBean(401, EncodingUtilHelper.quotate("Unauthorized"));
-        }
+//        } else {
+//            return new ReplyBean(401, EncodingUtilHelper.quotate("Unauthorized"));
+//        }
     }
 
     public ReplyBean getPageX() throws Exception {

@@ -33,9 +33,14 @@ import eu.rafaelaznar.dao.specificimplementation.TipousuarioSpecificDaoImplement
 import eu.rafaelaznar.dao.specificimplementation.UsuarioSpecificDaoImplementation;
 import java.sql.Connection;
 import eu.rafaelaznar.dao.publicinterface.ViewDaoInterface;
-import eu.rafaelaznar.dao.specificimplementation.LineadepedidoSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.PedidoSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.ProductoSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.ApellidoSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.ComunidadSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.MunicipioSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.NombrefemeninoSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.NombremasculinoSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.PacienteSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.ProvinciaSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.ViaSpecificDaoImplementation;
 
 public class MappingDaoHelper {
 
@@ -49,14 +54,30 @@ public class MappingDaoHelper {
             case "tipousuario":
                 oDao = (ViewDaoInterface) new TipousuarioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                 break;
-            case "pedido":
-                oDao = (ViewDaoInterface) new PedidoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+          
+            case "apellido":
+                oDao = (ViewDaoInterface) new ApellidoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                 break;
-            case "producto":
-                oDao = (ViewDaoInterface) new ProductoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+            case "comunidad":
+                oDao = (ViewDaoInterface) new ComunidadSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                 break;
-            case "linea_pedido":
-                oDao = (ViewDaoInterface) new LineadepedidoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+            case "municipio":
+                oDao = (ViewDaoInterface) new MunicipioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                break;
+            case "nombrefemenino":
+                oDao = (ViewDaoInterface) new NombrefemeninoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                break;
+            case "nombremasculino":
+                oDao = (ViewDaoInterface) new NombremasculinoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                break;
+            case "paciente":
+                oDao = (ViewDaoInterface) new PacienteSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                break;
+            case "provincia":
+                oDao = (ViewDaoInterface) new ProvinciaSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                break;
+            case "via":
+                oDao = (ViewDaoInterface) new ViaSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                 break;
             default:
                 //oReplyBean = new ReplyBean(500, "Object not found : Please contact your administrator");

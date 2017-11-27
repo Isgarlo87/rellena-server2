@@ -40,8 +40,10 @@ public class SqlBuilderHelper {
 
     public static String buildSqlFilter(ArrayList<FilterBeanHelper> alFilter) throws ParseException {
         String strSQLFilter = "";
-        for (FilterBeanHelper oFilterBean : alFilter) {
-            strSQLFilter += getFilterExpression(oFilterBean);
+        if (alFilter != null) {
+            for (FilterBeanHelper oFilterBean : alFilter) {
+                strSQLFilter += getFilterExpression(oFilterBean);
+            }
         }
         return strSQLFilter;
     }

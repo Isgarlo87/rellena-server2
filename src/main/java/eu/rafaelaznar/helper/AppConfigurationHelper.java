@@ -37,6 +37,9 @@ import eu.rafaelaznar.connection.DBCPConnection;
 import eu.rafaelaznar.connection.DriverManagerConnection;
 import eu.rafaelaznar.connection.HikariConnection;
 import eu.rafaelaznar.connection.ViburConnection;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Random;
 
 public class AppConfigurationHelper {
 
@@ -54,5 +57,27 @@ public class AppConfigurationHelper {
         gsonBuilder.setDateFormat("dd/MM/yyyy HH:mm");
         Gson oGson = gsonBuilder.excludeFieldsWithoutExposeAnnotation().create();
         return oGson;
+    }
+
+    public static int getRandomInt(int min, int max) {
+        Random rand = new Random();
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+        return randomNum;
+    }
+
+    public static Date getRadomDate() {
+        GregorianCalendar gc = new GregorianCalendar();
+        int year = getRandomInt(1945, 2016);
+        gc.set(gc.YEAR, year);
+        int dayOfYear = getRandomInt(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
+        gc.set(gc.DAY_OF_YEAR, dayOfYear);
+        Date date = new Date(gc.getTimeInMillis());
+        return date;
+    }
+
+    public static char getRadomChar() {
+        Random r = new Random();
+        char c = (char) (r.nextInt(26) + 'a');
+        return Character.toUpperCase(c);
     }
 }
